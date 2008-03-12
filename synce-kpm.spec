@@ -1,5 +1,5 @@
 %define svn	3309
-%define rel	1
+%define rel	2
 %if %svn
 %define release		%mkrel 0.%svn.%rel
 %define distname	%name-%svn.tar.lzma
@@ -27,7 +27,6 @@ Requires:	python-qt4
 Requires:	odccm
 Requires:	librapi-python
 
-
 %description
 SynCE-KPM stands for SynCE KDE PDA Manager and aims to be an
 application to manage WM5/WM6 PDA devices from Linux. SynCE-KPM
@@ -48,6 +47,19 @@ PC:
 %{__rm} -rf %{buildroot}
 %{__python} setup.py install --root=%{buildroot} --compile --optimize=2
 
+# XDG autostart
+mkdir -p %{buildroot}%{_sysconfdir}/xdg/autostart
+cat > %{buildroot}%{_sysconfdir}/xdg/autostart/mandriva-%{name}.desktop << EOF
+[Desktop Entry]
+Exec=synce-kpm
+Name=SynCE panel monitor
+Terminal=false
+Type=Application
+StartupNotify=false
+X-KDE-autostart-phase=2
+X-KDE-autostart-after=panel
+EOF
+
 %clean
 %{__rm} -rf %{buildroot}
 
@@ -57,4 +69,5 @@ PC:
 %{_bindir}/%{name}
 %{py_puresitedir}/synceKPM
 %{py_puresitedir}/synce_kpm-0.11-py%{pyver}.egg-info
+%{_sysconfdir}/xdg/autostart/mandriva-%{name}.desktop
 
