@@ -1,5 +1,5 @@
 %define svn	3309
-%define rel	2
+%define rel	3
 %if %svn
 %define release		%mkrel 0.%svn.%rel
 %define distname	%name-%svn.tar.lzma
@@ -26,6 +26,7 @@ BuildRequires:	python-setuptools
 Requires:	python-qt4
 Requires:	odccm
 Requires:	librapi-python
+Requires:	python-setuptools
 
 %description
 SynCE-KPM stands for SynCE KDE PDA Manager and aims to be an
