@@ -1,5 +1,5 @@
 %define svn	3309
-%define rel	3
+%define rel	4
 %if %svn
 %define release		%mkrel 0.%svn.%rel
 %define distname	%name-%svn.tar.lzma
@@ -61,6 +61,10 @@ X-KDE-autostart-phase=2
 X-KDE-autostart-after=panel
 EOF
 
+# KDE autostart
+mkdir -p %{buildroot}%{_datadir}/autostart
+cp %{buildroot}%{_sysconfdir}/xdg/autostart/mandriva-%{name}.desktop %{buildroot}%{_datadir}/autostart/mandriva-%{name}.desktop
+
 %clean
 %{__rm} -rf %{buildroot}
 
@@ -71,4 +75,5 @@ EOF
 %{py_puresitedir}/synceKPM
 %{py_puresitedir}/synce_kpm-0.11-py%{pyver}.egg-info
 %{_sysconfdir}/xdg/autostart/mandriva-%{name}.desktop
+%{_datadir}/autostart/mandriva-%{name}.desktop
 
