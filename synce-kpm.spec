@@ -1,5 +1,5 @@
 %define svn	3309
-%define rel	4
+%define rel	5
 %if %svn
 %define release		%mkrel 0.%svn.%rel
 %define distname	%name-%svn.tar.lzma
@@ -36,7 +36,7 @@ PC:
 
 * Install / uninstall programs
 * Display general device information
-* Manage partnerships (in case sync-engine is installed and running)
+* Manage partnerships
 
 %prep
 %setup -q -n %{dirname}
@@ -47,6 +47,20 @@ PC:
 %install
 %{__rm} -rf %{buildroot}
 %{__python} setup.py install --root=%{buildroot} --compile --optimize=2
+
+# menu
+mkdir -p %{buildroot}%{_datadir}/applications
+cat > %{buildroot}%{_datadir}/applications/mandriva-%{name}.desktop <<EOF
+[Desktop Entry]
+Name=SynCE panel monitor
+Comment=Panel applet and management tool for Windows Mobile devices
+Exec=%{_bindir}/%{name} 
+Icon=communcations_other_section
+Terminal=false
+Type=Application
+StartupNotify=true
+Categories=Qt;Network;
+EOF
 
 # XDG autostart
 mkdir -p %{buildroot}%{_sysconfdir}/xdg/autostart
@@ -65,6 +79,12 @@ EOF
 mkdir -p %{buildroot}%{_datadir}/autostart
 cp %{buildroot}%{_sysconfdir}/xdg/autostart/mandriva-%{name}.desktop %{buildroot}%{_datadir}/autostart/mandriva-%{name}.desktop
 
+%post
+%{update_menus}
+
+%postun
+%{clean_menus}
+
 %clean
 %{__rm} -rf %{buildroot}
 
@@ -76,4 +96,5 @@ cp %{buildroot}%{_sysconfdir}/xdg/autostart/mandriva-%{name}.desktop %{buildroot
 %{py_puresitedir}/synce_kpm-0.11-py%{pyver}.egg-info
 %{_sysconfdir}/xdg/autostart/mandriva-%{name}.desktop
 %{_datadir}/autostart/mandriva-%{name}.desktop
+%{_datadir}/applications/mandriva-%{name}.desktop
 
