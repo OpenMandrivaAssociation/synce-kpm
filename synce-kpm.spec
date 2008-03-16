@@ -1,5 +1,5 @@
 %define svn	3309
-%define rel	5
+%define rel	6
 %if %svn
 %define release		%mkrel 0.%svn.%rel
 %define distname	%name-%svn.tar.lzma
@@ -55,11 +55,11 @@ cat > %{buildroot}%{_datadir}/applications/mandriva-%{name}.desktop <<EOF
 Name=SynCE panel monitor
 Comment=Panel applet and management tool for Windows Mobile devices
 Exec=%{_bindir}/%{name} 
-Icon=communcations_other_section
+Icon=communications_other_section
 Terminal=false
 Type=Application
 StartupNotify=true
-Categories=Qt;Network;
+Categories=Qt;Network;X-MandrivaLinux-CrossDesktop;
 EOF
 
 # XDG autostart
