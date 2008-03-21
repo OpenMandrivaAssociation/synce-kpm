@@ -1,5 +1,5 @@
 %define svn	3309
-%define rel	6
+%define rel	7
 %if %svn
 %define release		%mkrel 0.%svn.%rel
 %define distname	%name-%svn.tar.lzma
@@ -23,6 +23,7 @@ BuildArch:	noarch
 BuildRequires:	python
 BuildRequires:	python-devel
 BuildRequires:	python-setuptools
+BuildRequires:	ImageMagick
 Requires:	python-qt4
 Requires:	odccm
 Requires:	librapi-python
@@ -48,6 +49,13 @@ PC:
 %{__rm} -rf %{buildroot}
 %{__python} setup.py install --root=%{buildroot} --compile --optimize=2
 
+# icons
+mkdir -p %{buildroot}%{_iconsdir}/hicolor/{16x16,22x22,32x32,48x48}/apps
+install -m 0644 synceKPM/data/blue_48x48.png %{buildroot}%{_iconsdir}/hicolor/48x48/apps/%{name}.png
+install -m 0644 synceKPM/data/blue_22x22.png %{buildroot}%{_iconsdir}/hicolor/22x22/apps/%{name}.png
+convert -scale 32 synceKPM/data/blue_48x48.png %{buildroot}%{_iconsdir}/hicolor/32x32/apps/%{name}.png
+convert -scale 16 synceKPM/data/blue_48x48.png %{buildroot}%{_iconsdir}/hicolor/16x16/apps/%{name}.png
+
 # menu
 mkdir -p %{buildroot}%{_datadir}/applications
 cat > %{buildroot}%{_datadir}/applications/mandriva-%{name}.desktop <<EOF
@@ -55,7 +63,7 @@ cat > %{buildroot}%{_datadir}/applications/mandriva-%{name}.desktop <<EOF
 Name=SynCE panel monitor
 Comment=Panel applet and management tool for Windows Mobile devices
 Exec=%{_bindir}/%{name} 
-Icon=communications_other_section
+Icon=%{name}
 Terminal=false
 Type=Application
 StartupNotify=true
@@ -81,9 +89,11 @@ cp %{buildroot}%{_sysconfdir}/xdg/autostart/mandriva-%{name}.desktop %{buildroot
 
 %post
 %{update_menus}
+%{update_icon_cache hicolor}
 
 %postun
 %{clean_menus}
+%{clean_icon_cache hicolor}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -97,4 +107,5 @@ cp %{buildroot}%{_sysconfdir}/xdg/autostart/mandriva-%{name}.desktop %{buildroot
 %{_sysconfdir}/xdg/autostart/mandriva-%{name}.desktop
 %{_datadir}/autostart/mandriva-%{name}.desktop
 %{_datadir}/applications/mandriva-%{name}.desktop
+%{_iconsdir}/hicolor/*/apps/%{name}.png
 
