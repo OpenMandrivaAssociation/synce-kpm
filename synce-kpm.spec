@@ -1,5 +1,5 @@
-%define svn	3309
-%define rel	7
+%define svn	3333
+%define rel	1
 %if %svn
 %define release		%mkrel 0.%svn.%rel
 %define distname	%name-%svn.tar.lzma
@@ -50,11 +50,11 @@ PC:
 %{__python} setup.py install --root=%{buildroot} --compile --optimize=2
 
 # icons
-mkdir -p %{buildroot}%{_iconsdir}/hicolor/{16x16,22x22,32x32,48x48}/apps
-install -m 0644 synceKPM/data/blue_48x48.png %{buildroot}%{_iconsdir}/hicolor/48x48/apps/%{name}.png
-install -m 0644 synceKPM/data/blue_22x22.png %{buildroot}%{_iconsdir}/hicolor/22x22/apps/%{name}.png
-convert -scale 32 synceKPM/data/blue_48x48.png %{buildroot}%{_iconsdir}/hicolor/32x32/apps/%{name}.png
-convert -scale 16 synceKPM/data/blue_48x48.png %{buildroot}%{_iconsdir}/hicolor/16x16/apps/%{name}.png
+mkdir -p %{buildroot}%{_iconsdir}/hicolor/{48x48,32x32,16x16,scalable}/apps
+install -m 0644 synceKPM/data/synce-green-scalable.svg %{buildroot}%{_iconsdir}/hicolor/scalable/apps/%{name}.svg
+convert -scale 48x48 synceKPM/data/synce-green-scalable.svg %{buildroot}%{_iconsdir}/hicolor/48x48/apps/%{name}.png
+convert -scale 32x32 synceKPM/data/synce-green-scalable.svg %{buildroot}%{_iconsdir}/hicolor/32x32/apps/%{name}.png
+convert -scale 16x16 synceKPM/data/synce-green-scalable.svg %{buildroot}%{_iconsdir}/hicolor/16x16/apps/%{name}.png
 
 # menu
 mkdir -p %{buildroot}%{_datadir}/applications
@@ -62,7 +62,7 @@ cat > %{buildroot}%{_datadir}/applications/mandriva-%{name}.desktop <<EOF
 [Desktop Entry]
 Name=SynCE panel monitor
 Comment=Panel applet and management tool for Windows Mobile devices
-Exec=%{_bindir}/%{name} 
+Exec=%{_bindir}/%{name}
 Icon=%{name}
 Terminal=false
 Type=Application
@@ -74,7 +74,8 @@ EOF
 mkdir -p %{buildroot}%{_sysconfdir}/xdg/autostart
 cat > %{buildroot}%{_sysconfdir}/xdg/autostart/mandriva-%{name}.desktop << EOF
 [Desktop Entry]
-Exec=synce-kpm
+Exec=%{_bindir}/%{name} -i
+Icon=%{name}
 Name=SynCE panel monitor
 Terminal=false
 Type=Application
@@ -100,12 +101,12 @@ cp %{buildroot}%{_sysconfdir}/xdg/autostart/mandriva-%{name}.desktop %{buildroot
 
 %files
 %defattr(-,root,root)
-%doc AUTHORS Changelog README TODO
+%doc AUTHORS ChangeLog README TODO
 %{_bindir}/%{name}
 %{py_puresitedir}/synceKPM
 %{py_puresitedir}/synce_kpm-0.11-py%{pyver}.egg-info
 %{_sysconfdir}/xdg/autostart/mandriva-%{name}.desktop
 %{_datadir}/autostart/mandriva-%{name}.desktop
 %{_datadir}/applications/mandriva-%{name}.desktop
-%{_iconsdir}/hicolor/*/apps/%{name}.png
+%{_iconsdir}/hicolor/*/apps/%{name}.*
 
