@@ -1,4 +1,4 @@
-%define svn	3339
+%define svn	3340
 %define rel	1
 %if %svn
 %define release		%mkrel 0.%svn.%rel
