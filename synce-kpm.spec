@@ -1,5 +1,5 @@
-%define svn	3340
-%define rel	2
+%define svn	0
+%define rel	1
 %if %svn
 %define release		%mkrel 0.%svn.%rel
 %define distname	%name-%svn.tar.lzma
@@ -104,7 +104,7 @@ cp %{buildroot}%{_sysconfdir}/xdg/autostart/mandriva-%{name}.desktop %{buildroot
 %doc AUTHORS ChangeLog README TODO
 %{_bindir}/%{name}
 %{py_puresitedir}/synceKPM
-%{py_puresitedir}/synce_kpm-0.11-py%{pyver}.egg-info
+%{py_puresitedir}/synce_kpm-%{version}-py%{pyver}.egg-info
 %{_sysconfdir}/xdg/autostart/mandriva-%{name}.desktop
 %{_datadir}/autostart/mandriva-%{name}.desktop
 %{_datadir}/applications/mandriva-%{name}.desktop
