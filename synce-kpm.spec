@@ -1,5 +1,5 @@
 %define svn	0
-%define rel	1
+%define rel	2
 %if %svn
 %define release		%mkrel 0.%svn.%rel
 %define distname	%name-%svn.tar.lzma
@@ -15,6 +15,8 @@ Summary:	Graphical tool for managing Windows Mobile devices
 Version:	0.11.1
 Release:	%{release} 
 Source0:	http://downloads.sourceforge.net/synce/%{distname}
+# From synce-hal SVN: support synce-hal - AdamW 2008/06
+Patch0:		kpm-hal.diff
 URL:		http://www.synce.org/moin/SynceTools/SynceKpm
 Group:		Communications
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
@@ -25,7 +27,7 @@ BuildRequires:	python-devel
 BuildRequires:	python-setuptools
 BuildRequires:	ImageMagick
 Requires:	python-qt4
-Requires:	odccm
+Requires:	synce-hal
 Requires:	librapi-python
 Requires:	python-setuptools
 
@@ -41,6 +43,7 @@ PC:
 
 %prep
 %setup -q -n %{dirname}
+%patch0 -p1 -b .hal
 
 %build
 %{__python} setup.py build
