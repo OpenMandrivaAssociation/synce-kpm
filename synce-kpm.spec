@@ -28,9 +28,9 @@ Requires:	python-qt4
 Requires:	synce-hal
 Requires:	librapi-python
 Requires:	python-setuptools
-Obsoletes:	synce-kde
-Obsoletes:	syncekonnector
-Provides:	synce-kde
+Obsoletes:	synce-kde < %{version}-%{release}
+Obsoletes:	syncekonnector < %{version}-%{release}
+Provides:	synce-kde = %{version}-%{release}
 
 %description
 SynCE-KPM stands for SynCE KDE PDA Manager and aims to be an
