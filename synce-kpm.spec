@@ -1,5 +1,5 @@
 %define svn	0
-%define rel	2
+%define rel	1
 %if %svn
 %define release		%mkrel 0.%svn.%rel
 %define distname	%name-%svn.tar.lzma
@@ -12,11 +12,9 @@
 
 Name:		synce-kpm
 Summary:	Graphical tool for managing Windows Mobile devices
-Version:	0.11.1
+Version:	0.12
 Release:	%{release} 
 Source0:	http://downloads.sourceforge.net/synce/%{distname}
-# From synce-hal SVN: support synce-hal - AdamW 2008/06
-Patch0:		kpm-hal.diff
 URL:		http://www.synce.org/moin/SynceTools/SynceKpm
 Group:		Communications
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
@@ -30,6 +28,8 @@ Requires:	python-qt4
 Requires:	synce-hal
 Requires:	librapi-python
 Requires:	python-setuptools
+Obsoletes:	synce-kde
+Obsoletes:	syncekonnector
 
 %description
 SynCE-KPM stands for SynCE KDE PDA Manager and aims to be an
@@ -43,7 +43,6 @@ PC:
 
 %prep
 %setup -q -n %{dirname}
-%patch0 -p1 -b .hal
 
 %build
 %{__python} setup.py build
