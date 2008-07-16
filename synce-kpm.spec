@@ -30,6 +30,7 @@ Requires:	librapi-python
 Requires:	python-setuptools
 Obsoletes:	synce-kde
 Obsoletes:	syncekonnector
+Provides:	synce-kde
 
 %description
 SynCE-KPM stands for SynCE KDE PDA Manager and aims to be an
