@@ -24,6 +24,10 @@ BuildRequires:	python
 BuildRequires:	python-devel
 BuildRequires:	python-setuptools
 BuildRequires:	ImageMagick
+# It's not actually a KDE app so it has no KDE buildrequires, but
+# it only makes sense to autostart it in KDE 3, so I want to use
+# %_kde3_datadir macro, which is is in kde3-macros... - AdamW 2008/09
+BuildRequires:	kde3-macros
 Requires:	python-qt4
 Requires:	synce-hal
 Requires:	librapi-python
