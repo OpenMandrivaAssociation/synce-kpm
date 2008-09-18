@@ -1,5 +1,5 @@
 %define svn	0
-%define rel	1
+%define rel	2
 %if %svn
 %define release		%mkrel 0.%svn.%rel
 %define distname	%name-%svn.tar.lzma
@@ -64,18 +64,18 @@ mkdir -p %{buildroot}%{_datadir}/applications
 cat > %{buildroot}%{_datadir}/applications/mandriva-%{name}.desktop <<EOF
 [Desktop Entry]
 Name=SynCE panel monitor
-Comment=Panel applet and management tool for Windows Mobile devices
+Comment=KDE panel applet and management tool for Windows Mobile devices
 Exec=%{_bindir}/%{name}
 Icon=%{name}
 Terminal=false
 Type=Application
 StartupNotify=true
-Categories=Qt;TelephonyTools;Utility;X-MandrivaLinux-CrossDesktop;
+Categories=Qt;TelephonyTools;Utility;
 EOF
 
-# XDG autostart
-mkdir -p %{buildroot}%{_sysconfdir}/xdg/autostart
-cat > %{buildroot}%{_sysconfdir}/xdg/autostart/mandriva-%{name}.desktop << EOF
+# autostart (KDE only)
+mkdir -p %{buildroot}%{_kde3_datadir}/autostart
+cat > %{buildroot}%{_kde3_datadir}/autostart/mandriva-%{name}.desktop << EOF
 [Desktop Entry]
 Exec=%{_bindir}/%{name} -i
 Icon=%{name}
@@ -83,13 +83,10 @@ Name=SynCE panel monitor
 Terminal=false
 Type=Application
 StartupNotify=false
+OnlyShowIn=KDE;
 X-KDE-autostart-phase=2
 X-KDE-autostart-after=panel
 EOF
-
-# KDE autostart
-mkdir -p %{buildroot}%{_datadir}/autostart
-cp %{buildroot}%{_sysconfdir}/xdg/autostart/mandriva-%{name}.desktop %{buildroot}%{_datadir}/autostart/mandriva-%{name}.desktop
 
 %if %mdkversion < 200900
 %post
@@ -112,8 +109,7 @@ cp %{buildroot}%{_sysconfdir}/xdg/autostart/mandriva-%{name}.desktop %{buildroot
 %{_bindir}/%{name}
 %{py_puresitedir}/synceKPM
 %{py_puresitedir}/synce_kpm-%{version}-py%{pyver}.egg-info
-%{_sysconfdir}/xdg/autostart/mandriva-%{name}.desktop
-%{_datadir}/autostart/mandriva-%{name}.desktop
+%{_kde3_datadir}/autostart/mandriva-%{name}.desktop
 %{_datadir}/applications/mandriva-%{name}.desktop
 %{_iconsdir}/hicolor/*/apps/%{name}.*
 
