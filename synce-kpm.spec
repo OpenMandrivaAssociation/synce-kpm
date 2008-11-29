@@ -1,5 +1,5 @@
 %define svn	0
-%define rel	2
+%define rel	3
 %if %svn
 %define release		%mkrel 0.%svn.%rel
 %define distname	%name-%svn.tar.lzma
@@ -31,7 +31,7 @@ BuildRequires:	kde3-macros
 Requires:	python-qt4
 Requires:	synce-hal
 Requires:	librapi-python
-Requires:	python-setuptools
+Requires:	python-pkg-resources
 Obsoletes:	synce-kde < %{version}-%{release}
 Obsoletes:	syncekonnector < %{version}-%{release}
 Provides:	synce-kde = %{version}-%{release}
