@@ -1,5 +1,5 @@
 %define svn	0
-%define rel	3
+%define rel	1
 %if %svn
 %define release		%mkrel 0.%svn.%rel
 %define distname	%name-%svn.tar.lzma
@@ -12,7 +12,7 @@
 
 Name:		synce-kpm
 Summary:	Graphical tool for managing Windows Mobile devices
-Version:	0.12
+Version:	0.14
 Release:	%{release} 
 Source0:	http://downloads.sourceforge.net/synce/%{distname}
 URL:		http://www.synce.org/moin/SynceTools/SynceKpm
@@ -20,14 +20,13 @@ Group:		Communications
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 License:	GPLv2+
 BuildArch:	noarch
-BuildRequires:	python
 BuildRequires:	python-devel
 BuildRequires:	python-setuptools
 BuildRequires:	imagemagick
 # It's not actually a KDE app so it has no KDE buildrequires, but
 # it only makes sense to autostart it in KDE 3, so I want to use
 # %_kde3_datadir macro, which is is in kde3-macros... - AdamW 2008/09
-BuildRequires:	kde3-macros
+#BuildRequires:	kde3-macros
 Requires:	python-qt4
 Requires:	synce-hal
 Requires:	librapi-python
@@ -78,19 +77,19 @@ Categories=Qt;TelephonyTools;Utility;
 EOF
 
 # autostart (KDE only)
-mkdir -p %{buildroot}%{_kde3_datadir}/autostart
-cat > %{buildroot}%{_kde3_datadir}/autostart/mandriva-%{name}.desktop << EOF
-[Desktop Entry]
-Exec=%{_bindir}/%{name} -i
-Icon=%{name}
-Name=SynCE panel monitor
-Terminal=false
-Type=Application
-StartupNotify=false
-OnlyShowIn=KDE;
-X-KDE-autostart-phase=2
-X-KDE-autostart-after=panel
-EOF
+#mkdir -p %{buildroot}%{_kde3_datadir}/autostart
+#cat > %{buildroot}%{_kde3_datadir}/autostart/mandriva-%{name}.desktop << EOF
+#[Desktop Entry]
+#Exec=%{_bindir}/%{name} -i
+#Icon=%{name}
+#Name=SynCE panel monitor
+#Terminal=false
+#Type=Application
+#StartupNotify=false
+#OnlyShowIn=KDE;
+#X-KDE-autostart-phase=2
+#X-KDE-autostart-after=panel
+#EOF
 
 %if %mdkversion < 200900
 %post
@@ -113,7 +112,7 @@ EOF
 %{_bindir}/%{name}
 %{py_puresitedir}/synceKPM
 %{py_puresitedir}/synce_kpm-%{version}-py%{pyver}.egg-info
-%{_kde3_datadir}/autostart/mandriva-%{name}.desktop
+#%{_kde3_datadir}/autostart/mandriva-%{name}.desktop
 %{_datadir}/applications/mandriva-%{name}.desktop
 %{_iconsdir}/hicolor/*/apps/%{name}.*
 
