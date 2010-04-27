@@ -12,7 +12,7 @@
 
 Name:		synce-kpm
 Summary:	Graphical tool for managing Windows Mobile devices
-Version:	0.14
+Version:	0.15
 Release:	%{release} 
 Source0:	http://downloads.sourceforge.net/synce/%{distname}
 URL:		http://www.synce.org/moin/SynceTools/SynceKpm
