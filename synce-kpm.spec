@@ -116,3 +116,91 @@ EOF
 %{_datadir}/applications/mandriva-%{name}.desktop
 %{_iconsdir}/hicolor/*/apps/%{name}.*
 
+
+
+%changelog
+* Tue Apr 27 2010 Emmanuel Andry <eandry@mandriva.org> 0.15-1mdv2010.1
++ Revision: 539671
+- New version 0.15
+
+* Fri Aug 07 2009 Emmanuel Andry <eandry@mandriva.org> 0.14-1mdv2010.0
++ Revision: 411239
+- New version 0.14
+- disable kde3 autostart (TODO : migrate to kde4)
+
+  + Oden Eriksson <oeriksson@mandriva.com>
+    - lowercase ImageMagick
+
+* Sat Nov 29 2008 Adam Williamson <awilliamson@mandriva.org> 0.12-3mdv2009.1
++ Revision: 308109
+- require python-pkg-resources not python-setuptools
+
+* Thu Sep 18 2008 Adam Williamson <awilliamson@mandriva.org> 0.12-2mdv2009.0
++ Revision: 285743
+- br kde3-macros
+- only have one autostart entry, for (hopefully) KDE 3: synce-trayicon can
+  now handle everything for GNOME
+
+* Wed Jul 16 2008 Adam Williamson <awilliamson@mandriva.org> 0.12-1mdv2009.0
++ Revision: 236586
+- version the obsoletes and provides
+- provide synce-kde
+- obsolete old synce-kde components
+- drop kpm-hal.diff (merged upstream)
+- new release 0.12
+
+  + Pixel <pixel@mandriva.com>
+    - rpm filetriggers deprecates update_menus/update_scrollkeeper/update_mime_database/update_icon_cache/update_desktop_database/post_install_gconf_schemas
+
+* Tue Jun 03 2008 Adam Williamson <awilliamson@mandriva.org> 0.11.1-2mdv2009.0
++ Revision: 214455
+- add kpm-hal.diff from synce-hal: support for synce-hal
+
+* Wed Apr 16 2008 Adam Williamson <awilliamson@mandriva.org> 0.11.1-1mdv2009.0
++ Revision: 194482
+- new release 0.11.1
+
+* Mon Mar 31 2008 Adam Williamson <awilliamson@mandriva.org> 0.11.1-0.3340.2mdv2008.1
++ Revision: 191329
+- make menu location more consistent with similar tools (Fabrice, #39150)
+
+* Mon Mar 24 2008 Adam Williamson <awilliamson@mandriva.org> 0.11.1-0.3340.1mdv2008.1
++ Revision: 189816
+- bump to SVN 3340: don't display splash screen when starting iconified
+
+* Mon Mar 24 2008 Adam Williamson <awilliamson@mandriva.org> 0.11.1-0.3339.1mdv2008.1
++ Revision: 189779
+- update to SVN 3339 (further improvements in the rewrite)
+
+* Sun Mar 23 2008 Adam Williamson <awilliamson@mandriva.org> 0.11.1-0.3333.1mdv2008.1
++ Revision: 189678
+- adjust file lists and icon installation logic
+- start iconified when autostarting
+- new SVN snapshot 3333: rewrite which improves reliability, hotplugging, and allows iconified startup (all needed by us)
+
+* Fri Mar 21 2008 Adam Williamson <awilliamson@mandriva.org> 0.11.1-0.3309.7mdv2008.1
++ Revision: 189325
+- better icon (#39068, thanks Fabrice)
+
+* Sun Mar 16 2008 Adam Williamson <awilliamson@mandriva.org> 0.11.1-0.3309.6mdv2008.1
++ Revision: 188202
+- fix typo in menu entry and make it cross-desktop (thanks Fabrice F.)
+
+* Sun Mar 16 2008 Adam Williamson <awilliamson@mandriva.org> 0.11.1-0.3309.5mdv2008.1
++ Revision: 188123
+- add a menu entry
+
+* Thu Mar 13 2008 Adam Williamson <awilliamson@mandriva.org> 0.11.1-0.3309.4mdv2008.1
++ Revision: 187393
+- need to put the autostart file in /usr/share/autostart too, apparently, for KDE to find it...
+- requires python-setuptools (thanks Andres)
+
+* Wed Mar 12 2008 Adam Williamson <awilliamson@mandriva.org> 0.11.1-0.3309.2mdv2008.1
++ Revision: 187260
+- add an XDG autostart file so it will be run automatically on session start
+
+* Wed Mar 12 2008 Adam Williamson <awilliamson@mandriva.org> 0.11.1-0.3309.1mdv2008.1
++ Revision: 187234
+- import synce-kpm
+
+
