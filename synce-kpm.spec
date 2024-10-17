@@ -15,7 +15,7 @@ Summary:	Graphical tool for managing Windows Mobile devices
 Version:	0.15
 Release:	%{release} 
 Source0:	http://downloads.sourceforge.net/synce/%{distname}
-URL:		http://www.synce.org/moin/SynceTools/SynceKpm
+URL:		https://www.synce.org/moin/SynceTools/SynceKpm
 Group:		Communications
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 License:	GPLv2+
